@@ -1,0 +1,6 @@
+﻿fieldset>label, 
+fieldset>textarea,
+fieldset>input {
+    margin-left:10px;
+    display:block;
+}

@@ -1,0 +1,47 @@
+﻿@model System.Collections.Generic.IEnumerable<GlobomanticsWeb.Models.BrandModel>
+@{
+    ViewData["Title"] = "Brands";
+}
+@section Styles {
+    <link href="~/css/style-brands.css" rel="stylesheet">
+}
+
+<h2>Brands</h2>
+
+<!-- Form for adding a brand -->
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <fieldset>
+        <legend>Add a brand</legend>
+        <label for="brandName">Name:</label>
+        <input type="text" id="brandName" name="Name" />
+
+        <label for="brandDescription">Description:</label>
+        <textarea cols="40" rows="3" id="brandDescription" name="Description"></textarea>
+
+        <label for="brandDate">Date:</label>
+        <input type="date" id="brandDate" name="InceptionDate" />
+
+        <input type="submit" value="Add" />
+    </fieldset>
+
+}
+
+<!-- end form -->
+<hr />
+
+<!--List existing brands-->
+<h4>Current Brands</h4>
+<ul class="list-group">
+    @if (Model != null)
+    {
+        foreach (var brand in Model)
+        {
+            <li class="list-group-item">@brand.Name (@brand.InceptionDate)</li>
+        }
+    }
+</ul>
+

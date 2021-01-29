@@ -1,0 +1,36 @@
+﻿@model System.Collections.Generic.IEnumerable<GlobomanticsWeb.Models.ImageModel>
+@{
+    ViewData["Title"] = "Media Management";
+}
+
+@section Styles {
+    <link href="~/css/style-brands.css" rel="stylesheet">
+}
+
+<h2>Images</h2>
+<form enctype="multipart/form-data" method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <label for="">Name</label>
+        <input type="text" id="imgName" name="Name" />
+
+        <label for="imgFile">File</label>
+        <input type="file" name="ImageFile" id="imgFile" />
+        
+        <input type="submit" value="Upload" />
+    </fieldset>
+    
+</form>
+
+<!--List of images-->
+<h4>Existing images</h4>
+<ul class="list-group">
+    @if (Model != null)
+    {
+        foreach (var image in Model)
+        {
+            <li class="list-group-item">@Html.ActionLink("View", "Detail", new { ImageFileName = image.ImageFileName })</li>
+        }
+    }
+
+</ul>
